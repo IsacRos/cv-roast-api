@@ -2,8 +2,8 @@ class AiChatService
   require 'openai'
   require 'api_errors'
 
-  def initialize(prompt = nil)
-    @prompt = prompt || DEFAULT_ROAST_PROMPT
+  def initialize(prompt = DEFAULT_ROAST_PROMPT)
+    @prompt = prompt 
     @ai_client = OpenAI::Client.new
   end
 

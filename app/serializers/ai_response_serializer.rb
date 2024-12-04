@@ -1,6 +1,6 @@
 class AiResponseSerializer
   include JSONAPI::Serializer
-  attributes :text, :img_url, :id
+  attributes :text, :img_url
 
   set_type :roast
 
