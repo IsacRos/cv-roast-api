@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AiResponseTest < ActiveSupport::TestCase
+class RoastTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

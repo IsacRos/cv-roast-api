@@ -7,6 +7,6 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_many_attached :cv
-  has_many :ai_responses, dependent: :destroy
+  has_many :roasts, dependent: :destroy
   validates :cv, content_type: ['application/pdf', 'image/jpeg', 'image/png'], size: { less_than: 5.megabytes }
 end

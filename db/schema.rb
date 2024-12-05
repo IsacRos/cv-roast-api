@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_08_151325) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_05_094440) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,15 +39,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_151325) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "ai_responses", force: :cascade do |t|
+  create_table "roasts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "blob_id", null: false
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "img_url"
-    t.index ["blob_id"], name: "index_ai_responses_on_blob_id"
-    t.index ["user_id"], name: "index_ai_responses_on_user_id"
+    t.index ["blob_id"], name: "index_roasts_on_blob_id"
+    t.index ["user_id"], name: "index_roasts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_08_151325) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "ai_responses", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "ai_responses", "users"
+  add_foreign_key "roasts", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "roasts", "users"
 end

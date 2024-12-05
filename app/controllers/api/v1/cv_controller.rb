@@ -21,7 +21,7 @@ class Api::V1::CvController < ApplicationController
     user.cv.attach(io: temp_image, filename: 'cv_image.jpg', content_type: 'image/jpeg')
     blob = user.cv.last.blob
     image_url = Rails.application.routes.url_helpers.rails_blob_url(blob, host: "http://localhost:3001")
-    roast = AiResponse.create!(user: user, blob_id: blob.id, text: content, img_url: image_url)
+    roast = Roast.create!(user: user, blob_id: blob.id, text: content, img_url: image_url)
   
   render json: {
     roast: roast
@@ -32,14 +32,14 @@ class Api::V1::CvController < ApplicationController
 
   def get_roast 
     id = params[:id]
-    roast = AiResponse.find(id)
-    serialized = AiResponseSerializer.new(roast).serializable_hash
+    roast = Roast.find(id)
+    serialized = RoastSerializer.new(roast).serializable_hash
     render json: serialized, status: :ok
   end
 
   def get_all_roasts
-    responses = current_user.ai_responses
-    serialized = AiResponseSerializer.new(responses).serializable_hash
+    responses = current_user.roasts
+    serialized = RoastSerializer.new(responses).serializable_hash
     render json: serialized, status: :ok
   end
 end

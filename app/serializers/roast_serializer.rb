@@ -1,4 +1,4 @@
-class AiResponseSerializer
+class RoastSerializer
   include JSONAPI::Serializer
   attributes :text, :img_url
 
