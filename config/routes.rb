@@ -11,10 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'is-authenticated', to: 'users#is_authenticated'
-      post 'roast', to: 'cv#roast'
-      get 'roasts/:id', to: 'cv#get_roast'
-      get 'roasts', to: 'cv#get_all_roasts'
+      resources :roasts, controller: "cv"
     end
   end
   # devise_for :users

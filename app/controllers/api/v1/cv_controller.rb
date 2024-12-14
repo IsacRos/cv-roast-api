@@ -3,7 +3,7 @@ class Api::V1::CvController < ApplicationController
   require 'openai'
   require 'tempfile'
 
-  def roast
+  def create
     user = current_user
     file = params[:cv]
 
@@ -30,14 +30,14 @@ class Api::V1::CvController < ApplicationController
   # render json: MOCK_ROAST_MESSAGE, status: :ok
   end
 
-  def get_roast 
+  def show 
     id = params[:id]
     roast = Roast.find(id)
     serialized = RoastSerializer.new(roast).serializable_hash
     render json: serialized, status: :ok
   end
 
-  def get_all_roasts
+  def index
     responses = current_user.roasts
     serialized = RoastSerializer.new(responses).serializable_hash
     render json: serialized, status: :ok
